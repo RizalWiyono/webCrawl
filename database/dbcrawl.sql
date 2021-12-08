@@ -34,7 +34,7 @@ CREATE TABLE `tweets` (
   `tweets` varchar(100) NOT NULL,
   `overlap` varchar(20) NOT NULL,
   `asymmetric` varchar(20) NOT NULL,
-  `cosine` varchar(20) NOT NULL
+  `dice` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

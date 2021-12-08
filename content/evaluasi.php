@@ -261,11 +261,11 @@
                                                 $sentimentT1 = "Positif";
                                             }
 
-                                            if(round($rows["overlap"],0) == 0){
+                                            if(round($rows["asymmetric"],0) == 0){
                                                 $sentimentT2 = "Netral";
-                                            }elseif(round($rows["overlap"],0) == 0.5){
+                                            }elseif(round($rows["asymmetric"],0) == 0.5){
                                                 $sentimentT2 = "Negatif";
-                                            }elseif(round($rows["overlap"],0) == 1){
+                                            }elseif(round($rows["asymmetric"],0) == 1){
                                                 $sentimentT2 = "Positif";
                                             }
                                     ?>
@@ -325,7 +325,7 @@
                                     while($row = mysqli_fetch_array($query_data)){ 
                                     // array_push($array, ["uye" => $row["tweets"], "value" => $row["overlap"]]);
                                     array_push($arrayDice, $row["tweets"]); 
-                                    array_push($arrayTargetDice, $row["cosine"]);
+                                    array_push($arrayTargetDice, $row["dice"]);
                                     array_push($arrayStringDice, $row["tweets"],); ?>
                                     
                                     <?php $no++; } 
@@ -391,11 +391,11 @@
                                                 $sentimentT1 = "Positif";
                                             }
 
-                                            if(round($rows["overlap"],0) == 0){
+                                            if(round($rows["dice"],0) == 0){
                                                 $sentimentT2 = "Netral";
-                                            }elseif(round($rows["overlap"],0) == 0.5){
+                                            }elseif(round($rows["dice"],0) == 0.5){
                                                 $sentimentT2 = "Negatif";
-                                            }elseif(round($rows["overlap"],0) == 1){
+                                            }elseif(round($rows["dice"],0) == 1){
                                                 $sentimentT2 = "Positif";
                                             } ?>
                                     <tr style="color: #868686;">
