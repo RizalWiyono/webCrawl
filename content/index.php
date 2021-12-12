@@ -181,7 +181,7 @@
                             
                             for($i = 0; $i < $totalData-1; $i++)
                             {
-                                $q += $arrayTFIDF[$totalBigData-1][$i]*$arrayTFIDF[$y][$i];
+                                $dQ += $arrayTFIDF[$totalBigData-1][$i]*$arrayTFIDF[$y][$i];
                                 $d += pow($arrayTFIDF[$y][$i], 2);
                                 $q += pow($arrayTFIDF[$totalBigData-1][$i], 2);
                             }
@@ -232,9 +232,7 @@
                             <?php } ?>
                         </tr>
                         
-                    <?php 
-
-                    include 'src/connection/connection.php';
+                    <?php include 'src/connection/connection.php';
 
                     // Overlap
                     $resultDQO = 0;
@@ -242,9 +240,9 @@
                     $resultQO = 0;
                     for($i = 0; $i < $totalData-1; $i++)
                     {
-                    $resultDQO += ($arrayTFIDF[10][$i]*$arrayTFIDF[$y][$i]);
-                    $resultDO += pow($arrayTFIDF[$y][$i], 2);
-                    $resultQO += pow($arrayTFIDF[10][$i], 2);
+                        $resultDQO += ($arrayTFIDF[10][$i]*$arrayTFIDF[$y][$i]);
+                        $resultDO += pow($arrayTFIDF[$y][$i], 2);
+                        $resultQO += pow($arrayTFIDF[10][$i], 2);
                     }
 
                     $resultO = round($resultDQO/min($resultDO, $resultQO),1);
@@ -271,9 +269,9 @@
                     
                     for($i = 0; $i < $totalData-1; $i++)
                     {
-                    $resultDQD += ($arrayTFIDF[$y][$i] * $arrayTFIDF[10][$i]);
-                    $resultDD += pow($arrayTFIDF[$y][$i], 2);
-                    $resultQD += pow($arrayTFIDF[10][$i],2);
+                        $resultDQD += ($arrayTFIDF[$y][$i] * $arrayTFIDF[10][$i]);
+                        $resultDD += pow($arrayTFIDF[$y][$i], 2);
+                        $resultQD += pow($arrayTFIDF[10][$i],2);
                     }
 
                     $resultD = round($resultDQD/(0.5 * sqrt($resultQD) + 0.5 * sqrt($resultDD)), 1);
@@ -281,10 +279,10 @@
                     $ids = $item["id"];
 
                     // Input to Database
-                    $query = "INSERT INTO tweets (id_tweets, id_username, username, tweets, overlap, asymmetric, cosine) 
+                    $queryInsert = "INSERT INTO tweets (id_tweets, id_username, username, tweets, overlap, asymmetric, dice) 
                     values 
                     (null, '$ids', '$dataUsername','$dataTweets','$resultO', '$resultA', '$resultD')";
-                    mysqli_query($connect, $query);
+                    mysqli_query($connect, $queryInsert);
                     $y++;
                     } ?>
                     
